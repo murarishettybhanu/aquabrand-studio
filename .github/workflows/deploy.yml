@@ -1,5 +1,5 @@
 # Deploy to GitHub Pages
-# Builds the Vite/TanStack Start app and deploys the static client output
+# Builds the TanStack Start app and deploys the static client output
 # to GitHub Pages on every push to the main branch.
 
 name: Deploy to GitHub Pages
@@ -15,9 +15,7 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run
-# in-progress and latest queued. Do NOT cancel in-progress runs as we want to
-# allow these deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -44,28 +42,16 @@ jobs:
 
       - name: Build
         run: bun run build
+        env:
+          GITHUB_PAGES: true
 
-      - name: Find build output
-        id: find_output
-        run: |
-          # TanStack Start with Cloudflare outputs to .output/public/
-          # Fallback to dist/client or dist/ if that doesn't exist
-          if [ -d ".output/public" ]; then
-            echo "dir=.output/public" >> "$GITHUB_OUTPUT"
-          elif [ -d "dist/client" ]; then
-            echo "dir=dist/client" >> "$GITHUB_OUTPUT"
-          elif [ -d "dist" ]; then
-            echo "dir=dist" >> "$GITHUB_OUTPUT"
-          else
-            echo "::error::Could not find build output directory"
-            exit 1
-          fi
+      - name: Generate static index.html
+        run: node scripts/generate-index.mjs
+        env:
+          BASE_PATH: /aquabrand-studio/
 
       - name: Add .nojekyll
-        run: touch ${{ steps.find_output.outputs.dir }}/.nojekyll
-
-      - name: Add 404 fallback for SPA routing
-        run: cp ${{ steps.find_output.outputs.dir }}/index.html ${{ steps.find_output.outputs.dir }}/404.html 2>/dev/null || true
+        run: touch dist/client/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -73,7 +59,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ steps.find_output.outputs.dir }}
+          path: dist/client
 
   deploy:
     environment:
