@@ -1,21 +1,18 @@
 # Deploy to GitHub Pages
-# Builds the TanStack Start app and deploys the static client output
-# to GitHub Pages on every push to the main branch.
+# Builds a static SPA version of the app and deploys to GitHub Pages.
 
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -35,18 +32,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
-        env:
-          GITHUB_PAGES: true
-
-      - name: Generate static index.html
-        run: node scripts/generate-index.mjs
-        env:
-          BASE_PATH: /aquabrand-studio/
+      - name: Build static SPA
+        run: npx vite build --config vite.config.pages.ts
 
       - name: Add .nojekyll
-        run: touch dist/client/.nojekyll
+        run: touch dist/static/.nojekyll
+
+      - name: Copy 404 fallback for SPA routing
+        run: cp dist/static/index.html dist/static/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -54,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/client
+          path: dist/static
 
   deploy:
     environment:
