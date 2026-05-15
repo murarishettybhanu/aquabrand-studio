@@ -13,9 +13,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Aqualume — Custom Bottled Water & Private Label" },
-      { name: "description", content: "Premium custom-branded water for events, weddings, and private label retail. 100% recyclable glass and PET. Get a quote in 24 hours." },
+      { name: "description", content: "Premium custom-branded water for restaurants, businesses, events, and private label. Aqualume distribution. 100% recyclable. Get a quote." },
       { property: "og:title", content: "Aqualume — Custom Bottled Water & Private Label" },
-      { property: "og:description", content: "Premium custom-branded water for events, weddings, and private label retail. 100% recyclable." },
+      { property: "og:description", content: "Premium custom-branded water for restaurants, businesses, and distribution. 100% recyclable." },
     ],
   }),
 });

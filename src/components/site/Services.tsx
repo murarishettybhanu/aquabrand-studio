@@ -7,10 +7,22 @@ export function Services() {
       bullets: ["Min. order 144 bottles", "5–7 day turnaround", "Glass & PET options"],
     },
     {
-      tag: "02 — Retail",
+      tag: "02 — Business",
+      title: "Restaurants & Corporate",
+      copy: "Elevate your guest experience with high-end branded water for daily operations. Perfect for boutique hotels, fine dining, and modern workspaces.",
+      bullets: ["Subscription fulfillment", "Premium glass designs", "Volume-based contracts"],
+    },
+    {
+      tag: "03 — Retail",
       title: "Private Label",
       copy: "Launch your own premium water line. We handle sourcing, design support, regulatory compliance, and consistent fulfillment at scale.",
       bullets: ["MOQ from 5,000 units", "FDA-compliant facility", "Dedicated account lead"],
+    },
+    {
+      tag: "04 — Distribution",
+      title: "Aqualume Brand",
+      copy: "Interested in carrying our own signature label? We offer distribution partnerships for retailers and wholesalers seeking premium water solutions.",
+      bullets: ["Wholesale pricing", "Ready-to-ship stock", "Marketing support"],
     },
   ];
   return (
@@ -19,7 +31,7 @@ export function Services() {
         <div className="flex items-end justify-between mb-16 flex-wrap gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-accent mb-4">What we do</p>
-            <h2 className="text-4xl md:text-5xl max-w-2xl text-balance">Two services. One obsessive standard.</h2>
+            <h2 className="text-4xl md:text-5xl max-w-2xl text-balance">A suite of services. One obsessive standard.</h2>
           </div>
           <p className="text-muted-foreground max-w-sm">
             Whether for a single celebration or a national rollout, every bottle leaves our line the same way: perfectly.

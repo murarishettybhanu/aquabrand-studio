@@ -21,7 +21,13 @@ export function Pricing() {
       qty: "5,000+ bottles",
       price: "Custom",
       unit: "volume pricing",
-      perks: ["Private label program", "Custom bottle molds", "Foil & embossing", "Account manager", "Logistics support"],
+      perks: [
+        "Private label program",
+        "Corporate & Restaurant programs",
+        "Distribution partnerships",
+        "Custom bottle molds",
+        "Logistics support",
+      ],
       featured: false,
     },
   ];

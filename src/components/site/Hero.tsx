@@ -10,8 +10,8 @@ export function Hero() {
             Water, refined to <em className="not-italic text-primary">your</em> brand.
           </h1>
           <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-            Custom bottling for weddings, corporate events, and premium retail.
-            Glass and PET. 100% recyclable. Crafted in small, considered runs.
+            Custom bottling for restaurants, businesses, weddings, and premium retail.
+            Aqualume distribution and private label. Glass and PET. 100% recyclable.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a href="#quote" className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-elegant hover:translate-y-[-1px] transition">
